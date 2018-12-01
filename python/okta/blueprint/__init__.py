@@ -1,0 +1,1 @@
+from python.okta.blueprint.authenticate import authenticate

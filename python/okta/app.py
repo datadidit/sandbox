@@ -11,26 +11,34 @@ app.register_blueprint(authenticate)
 
 
 # Actual SPA
-"""
-@app.route("/")
+@app.route("/axios_cors_bs")
 def login_user():
     target_origin = url_for('login_user', _external=True, _scheme='http')
     return render_template("login.html",
                            target_origin=target_origin)
-"""
+
 @app.route("/")
+def basic_login():
+    target_origin = url_for('basic_login', _external=True, _scheme='http')
+    return render_template("basic.html",
+                           target_origin=target_origin)
+
+@app.route("/correct")
 def main_page():
     """
+
     if len(required.keys()) > 0:
         return render_template(
             'error.html',
             required=required,
             okta=okta)
     """
+
     redirect_uri = url_for(
         'authenticate.sso_oidc',
         _external=True,
         _scheme='http')
+
     login_with_okta_branding = create_authorize_url(
         base_url=IDENTITY_PROVIDER,
         client_id=CLIENT_ID,
@@ -46,8 +54,9 @@ def main_page():
         target_origin=target_origin,
         login_with_okta_branding=login_with_okta_branding,
         okta={
-            "smdf": "aslmdf"
+            "smdf": 1
         })
+
 
 # app.register_blueprint(authenticate)
 if __name__ == "__main__":

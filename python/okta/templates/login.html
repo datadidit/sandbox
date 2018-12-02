@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<div id="root"></div>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/babel">
+class Login extends React.Component {
+    constructor(props){
+        super(props)
+
+        this.state = {
+            username: "",
+            password: ""
+        }
+    }
+
+    onChange = (name, value) => {
+        this.setState({
+            [name]: value
+        })
+    }
+
+    login = (username, password) => {
+        console.log(username)
+        console.log(password)
+        let auth = {
+            auth: {
+                username: username,
+                password: password
+            }
+        }
+        axios.get("http://localhost:8080/login", auth).then(res => {
+            console.log(res)
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+
+    render() {
+        const { username, password } = this.state
+
+        return (
+            <div>
+                <input type="text"
+                       onChange={e => this.onChange("username", e.target.value)}
+                       placeholder="Enter username"/>
+                <input type="password"
+                       onChange={e => this.onChange("password", e.target.value)}
+                       placeholder="Enter password"/>
+                <button onClick={() => this.login(username, password)}>login</button>
+            </div>
+        );
+    }
+}
+ReactDOM.render(
+    <Login />,
+    document.getElementById('root')
+);
+</script>
+</html>

@@ -1,0 +1,64 @@
+
+{% extends "base.html" %}
+{% block body %}
+      <div class="row">
+        <div class="col-md-6" id="content-left">
+          <div id="logged-out-message">
+            <p>
+              This is a demonstration of how to use Okta to handle authentication for a "single page application".
+            </p>
+            <!-- Source: http://openclipart.org/detail/34273/tango-system-lock-screen-by-warszawianka -->
+            <img src="/static/locked-screen.png" alt="Locked computer screen"/>
+         </div>
+         <div id="logged-in-message" style="display: none;">
+           <h1>You are logged in!</h1>
+            <img src="/static/top-secret.png" alt="TOP SECRET" />
+         </div>
+        </div>
+        <div class="col-md-6" id="content-right">
+          <div id="okta-sign-in-widget"></div>
+          <div id="logged-in-user-id" style="display: none;">
+           <p>Logged in as User ID: <span id="okta-user-id"></span></p>
+         </div>
+        </div>
+      </div>
+{% endblock %}
+{% block javascript %}
+    <script src="/static/single-page.js">
+    </script>
+    <script type="text/javascript">
+      function setupOktaSignIn(baseUrl, clientId) {
+          var oktaSignIn = new OktaSignIn({
+              baseUrl: baseUrl,
+              clientId: clientId,
+              authParams: {
+                  responseType: 'id_token',
+                  responseMode: 'okta_post_message',
+                  scope: ['openid', 'groups']
+              },
+              idps: [
+                  {
+                      'type': 'FACEBOOK',
+                      'id': '0oa5c17af3cHZliYY0h7'
+                  },
+                  {
+                      'type': 'GOOGLE',
+                      'id': '0oa5c17af3cHZliYY0h8'
+                  },
+                  {
+                      'type': 'LINKEDIN',
+                      'id': '0oa5c17af3cHZliYY0h8'
+                  }
+              ]
+          });
+          return oktaSignIn;
+      };
+
+      var oktaSignIn = setupOktaSignIn('{{okta.base_url}}', '{{okta.client_id}}');
+        
+      $(document).ready(function () {
+          // defined in 'single-page.js'
+          renderOktaWidget();
+      });
+    </script>
+{% endblock %}

@@ -1,7 +1,7 @@
-from flask import Blueprint, request, url_for, redirect
+from flask import Blueprint, request, url_for, redirect, jsonify
 from python.okta import IDENTITY_PROVIDER, CLIENT_ID
-from python.okta.utils.authenticate import login, create_authorize_url
-from pprint import pprint
+from python.okta.utils.authenticate import login, create_authorize_url, okta_pyjose_decode, okta_pyjwt_decode, \
+    fetch_jwt_public_key_for, parse_jwt
 
 authenticate = Blueprint("authenticate", __name__)
 
@@ -45,17 +45,12 @@ def fetch_login():
 
 @authenticate.route("/sso/oidc", methods=["GET", "POST"])
 def sso_oidc():
-    print request
-    print request.path
-    print request.values
-    print dir(request)
-    t = pprint(request)
-    print t
-    # id_token = request.form['id_token']
-    print "DID I GET HERE!!!!"
-    # print id_token
-    # return id_token
-    return "ok"
+    id_token = request.form['id_token']
+    try:
+        decode = okta_pyjwt_decode(id_token)
+        return jsonify(decode)
+    except Exception as e:
+        raise e
 
 
 @authenticate.route("/jello")

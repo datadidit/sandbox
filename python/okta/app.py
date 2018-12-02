@@ -13,6 +13,9 @@ app.register_blueprint(authenticate)
 # Actual SPA
 @app.route("/axios_cors_bs")
 def login_user():
+    # TODO: Make below work with axios
+    # https://stackoverflow.com/questions/26980713/solve-cross-origin-resource-sharing-with-flask
+    # https://greenash.net.au/thoughts/2014/12/conditionally-adding-http-response-headers-in-flask-and-apache/
     target_origin = url_for('login_user', _external=True, _scheme='http')
     return render_template("login.html",
                            target_origin=target_origin)
@@ -22,6 +25,7 @@ def basic_login():
     target_origin = url_for('basic_login', _external=True, _scheme='http')
     return render_template("basic.html",
                            target_origin=target_origin)
+
 
 @app.route("/correct")
 def main_page():

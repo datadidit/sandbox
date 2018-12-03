@@ -45,8 +45,9 @@ def fetch_login():
         base_url=IDENTITY_PROVIDER,
         sessionToken=result['sessionToken'],
         client_id=CLIENT_ID,
-        scope='openid',
-        response_type='id_token',
+        scope='openid profile email',
+        #response_type='token',
+        response_type="id_token",
         response_mode='form_post',
         nonce='FakeNonce',
         state='FakeState',
@@ -58,11 +59,16 @@ def fetch_login():
 
 @authenticate.route("/sso/oidc", methods=["GET", "POST"])
 def sso_oidc():
-    id_token = request.form['id_token']
     try:
+        # Id token flow
+        id_token = request.form['id_token']
         decode = okta_pyjwt_decode(id_token)
+        # Goes with token response_type
+        # access_token = request.form['access_token']
+        # decode = okta_pyjwt_decode(access_token)
         return jsonify(decode)
     except Exception as e:
+        print request.form
         raise e
 
 

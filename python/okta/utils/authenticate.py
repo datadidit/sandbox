@@ -11,15 +11,22 @@ import jwt
 from jwt.algorithms import RSAAlgorithm
 from jose import jwt as jose_jwt
 from jose import jws as jose_jws
-from python.okta import IDENTITY_PROVIDER, CLIENT_ID
+from python.okta import IDENTITY_PROVIDER, CLIENT_ID, API_TOKEN
 
 AUTHENTICATION_URL = IDENTITY_PROVIDER + '/api/v1/authn'
 AUTHORIZATION_URL = IDENTITY_PROVIDER + '/v1/authorize'
 # https://developer.okta.com/docs/api/resources/oidc#1-single-sign-on-to-okta
 KEYS_URL = IDENTITY_PROVIDER+'/oauth2/v1/keys'
+AUTHORIZATION_KEYS_URL = IDENTITY_PROVIDER + '/oauth2/default/v1/keys'
+USERS_BASE_URL = IDENTITY_PROVIDER + "/api/v1/users"
 not_alpha_numeric = re.compile('[^a-zA-Z0-9]+')
 public_keys = {}
 allowed_domains = ['okta.com', 'oktapreview.com']
+USER_HEADERS = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+    "Authorization": "SSWS {0}".format(API_TOKEN)
+}
 
 
 def login(username, password):
@@ -49,6 +56,15 @@ def get_public_keys():
     return json.loads(response.text)['keys']
 
 
+def get_auth_public_keys():
+    '''
+        Get public keys for authorization
+    :return:
+    '''
+    response = requests.get(AUTHORIZATION_KEYS_URL)
+    return json.loads(response.text)['keys']
+
+
 def create_authorize_url(**kwargs):
     # Taken from
     base_url = kwargs['base_url']
@@ -60,8 +76,21 @@ def create_authorize_url(**kwargs):
     return redirect_url
 
 
+def get_user_by_id(user_id):
+    '''
+
+    :param user_id:
+    :return:
+    '''
+    url = USERS_BASE_URL + "/{0}".format(user_id)
+
+    response = requests.get(url, headers=USER_HEADERS)
+    return json.loads(response.text)
+
+
 def okta_pyjwt_decode(id_token):
     keys = get_public_keys()
+    # keys = get_auth_public_keys()
 
     for key in keys:
         alg = key['alg']
@@ -76,6 +105,9 @@ def okta_pyjwt_decode(id_token):
             return decode
         except Exception as e:
             print e
+            # What was in the token
+            decode = jwt.decode(id_token, public_key, algorithms="RS256", audience=CLIENT_ID, verify=False)
+            print decode
 
 
 def domain_name_for(url):

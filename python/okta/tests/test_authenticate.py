@@ -24,6 +24,10 @@ def _get_id_token():
     return open(FILE_PATH + "/data/latest_id_token").read()
 
 
+def _get_access_token():
+    return open(FILE_PATH + "/data/access_token").read()
+
+
 @responses.activate
 def test_authenticate_flow():
     responses.add(responses.GET, KEYS_URL, json=_get_key_response(), status=200)
@@ -41,7 +45,7 @@ def test_login():
     assert result == json.loads(_get_login_response())
 
 
-def test_verify():
+def test_verify_id_token():
     token = okta_pyjwt_decode(_get_id_token())
     print token
     """
@@ -52,6 +56,12 @@ def test_verify():
     token = parse_jwt(_get_id_token())
     print token
     """
+
+def test_verify_access_token():
+    token = _get_access_token()
+    decode = okta_pyjwt_decode(token)
+    print decode
+
 
 def test_key_diff():
     ''' What is diff '''

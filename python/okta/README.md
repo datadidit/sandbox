@@ -9,11 +9,11 @@ api.
 * Identity Provider: [https://dev-967684.oktapreview.com/](https://dev-967684.oktapreview.com/)
 * Client Id: 0oahwams3hEA80YM40h7
 
-
 ## Notes
 
 * [Choosing a Authentication Flow](https://developer.okta.com/authentication-guide/auth-overview/#choosing-an-oauth-20-flow)
 * [Simple React App](https://medium.com/@to_pe/how-to-add-react-to-a-simple-html-file-a11511c0235f)
+* [Scopes](https://developer.okta.com/docs/api/resources/oidc#access-token-scopes-and-claims)
 
 ### Rabbit Hole
 

@@ -24,6 +24,10 @@ def login_user():
 def basic_login():
     target_origin = url_for('basic_login', _external=True, _scheme='http')
     return render_template("basic.html",
+                           environment={
+                               "client_id": CLIENT_ID,
+                               "identity_provider": IDENTITY_PROVIDER
+                           },
                            target_origin=target_origin)
 
 

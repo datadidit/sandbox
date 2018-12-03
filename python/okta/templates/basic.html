@@ -6,6 +6,10 @@
 </head>
 <body>
 <h1>Basic Example</h1>
+<div>
+    <h2>Client Id: {{ environment.client_id }}</h2>
+    <h2>Identity Provider: {{ environment.identity_provider }}</h2>
+</div>
 <form action="/login" method="post">
     <div>
         <input autocomplete="off" id="inputUsername" name="username" placeholder="Username" type="text" value="">

@@ -1,9 +1,22 @@
-from flask import Blueprint, request, url_for, redirect, jsonify
+from flask import Blueprint, request, url_for, redirect, jsonify, Response
 from python.okta import IDENTITY_PROVIDER, CLIENT_ID
 from python.okta.utils.authenticate import login, create_authorize_url, okta_pyjose_decode, okta_pyjwt_decode, \
     fetch_jwt_public_key_for, parse_jwt
 
 authenticate = Blueprint("authenticate", __name__)
+
+
+@authenticate.route("/basic_login")
+def basic_login():
+    ''' Example of basic authentication'''
+    if request.authorization:
+        # Once you login once browser will save your credentials
+        redirect_uri = url_for("{0}.{1}".format("authenticate", fetch_login.__name__))
+        response = redirect(redirect_uri)
+        response.headers = {"authorization": request.authorization}
+        return response
+
+    return Response("Login is required!", 401, {'WWW-Authenticate': 'Basic realm="Login Required"'})\
 
 
 @authenticate.route("/login", methods=["GET", "POST"])

@@ -71,7 +71,9 @@ class build(_build):  # pylint: disable=invalid-name
 # The output of custom commands (including failures) will be logged in the
 # worker-startup log.
 CUSTOM_COMMANDS = [
-    ['echo', 'Custom command worked!']]
+    ['echo', 'Custom command worked!']
+    # ['apt-get', 'install', 'python-mysqldb']  # Adding this also makes job hang
+]
 
 
 class CustomCommands(setuptools.Command):
@@ -105,7 +107,10 @@ class CustomCommands(setuptools.Command):
 # Note that the Python Dataflow containers come with numpy already installed
 # so this dependency will not trigger anything to be installed unless a version
 # restriction is specified.
-REQUIRED_PACKAGES = []
+REQUIRED_PACKAGES = [
+	"sqlalchemy",
+    # "mysql-python"  # Adding this makes DataFlowRunner hang
+]
 
 
 setuptools.setup(

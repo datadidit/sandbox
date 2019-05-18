@@ -1,0 +1,2 @@
+future==0.17.1
+apache_beam[gcp]==2.12.0

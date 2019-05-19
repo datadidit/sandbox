@@ -39,7 +39,7 @@ the machines the DataFlowRunner starts up.
 ## Reading Material
 
 * [Programming Guide](https://beam.apache.org/documentation/programming-guide/)
-* [Managing Dependencies]((https://beam.apache.org/documentation/sdks/python-pipeline-dependencies/))
+* [Managing Dependencies](https://beam.apache.org/documentation/sdks/python-pipeline-dependencies/)
 * [Word Count Walk Through](https://beam.apache.org/get-started/wordcount-example/)
 
 ## Trouble Shooting

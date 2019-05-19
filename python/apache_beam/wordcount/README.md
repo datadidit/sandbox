@@ -17,7 +17,7 @@ python wordcount_main.py --input gs://dataflow-samples/shakespeare/kinglear.txt 
                          --temp_location gs://cloud-data-flow-test/tmp_sandbox/output
 ```
 
-## [How to query MySQL from Python pipeline](https://beam.apache.org/documentation/sdks/python-pipeline-dependencies/)
+## How to query MySQL from Python pipeline
 
 Had trouble querying MySQL from my pipeline and found a ton of examples for JDBC but not for Python. In order to do it
 with Python you need to use:
@@ -29,14 +29,18 @@ to run in [DataFlowRunner](https://stackoverflow.com/questions/56202734/python-m
 REQUIRED_PACKAGES = [
     "pymysql",
     "sqlalchemy",
-    "redis",
-    "matplotlib"
+    "redis",  # Not required but handy for my use case
+    "matplotlib"  # Not required but handy for my use case 
 ]
 ```
 * Depending on your MySQL instance you may need to setup an SQLProxy in order to communicate from
 the machines the DataFlowRunner starts up.
 
+## Reading Material
 
+* [Programming Guide](https://beam.apache.org/documentation/programming-guide/)
+* [Managing Dependencies]((https://beam.apache.org/documentation/sdks/python-pipeline-dependencies/))
+* [Word Count Walk Through](https://beam.apache.org/get-started/wordcount-example/)
 
 ## Trouble Shooting
 
@@ -47,3 +51,5 @@ export PYTHONPATH=/Users/mkwyche/workspace/python/sandbox/python/apache_beam/wor
 ```
 
 For it to work.
+
+* Need to provide full path to setup.py in order for package to work on DataFlowRunner.

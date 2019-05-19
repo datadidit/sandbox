@@ -71,8 +71,7 @@ class build(_build):  # pylint: disable=invalid-name
 # The output of custom commands (including failures) will be logged in the
 # worker-startup log.
 CUSTOM_COMMANDS = [
-    ['echo', 'Custom command worked!']
-    # ['apt-get', 'install', 'python-mysqldb']  # Adding this also makes job hang
+    ['echo', 'Custom command worked!'],
 ]
 
 
@@ -108,8 +107,10 @@ class CustomCommands(setuptools.Command):
 # so this dependency will not trigger anything to be installed unless a version
 # restriction is specified.
 REQUIRED_PACKAGES = [
-	"sqlalchemy",
-    # "mysql-python"  # Adding this makes DataFlowRunner hang
+    "pymysql",
+    "sqlalchemy",
+    "redis",
+    "matplotlib"
 ]
 
 

@@ -15,6 +15,7 @@ COPY . ./
 
 # Add PYTHONPATH
 ENV PYTHONPATH=/usr/src/flask_app
+ENV UWSGI_PROFILE_OVERRIDE=ssl=true
 
 RUN chmod +x ./start.sh
 

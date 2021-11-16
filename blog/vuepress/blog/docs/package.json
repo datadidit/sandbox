@@ -1,0 +1,19 @@
+{
+  "name": "blog",
+  "version": "0.0.1",
+  "description": "Blog Under Construction",
+  "main": "index.js",
+  "authors": {
+    "name": "Marcus",
+    "email": "mkwyche@gmail.com"
+  },
+  "repository": "sandbox/blog",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.5.3"
+  }
+}

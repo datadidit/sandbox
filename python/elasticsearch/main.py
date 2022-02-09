@@ -1,4 +1,6 @@
+import json
 from elasticsearch import Elasticsearch
+from elasticsearch.client.indices import IndicesClient
 
 ELASTIC_URL = "http://localhost:9200"
 
@@ -28,11 +30,17 @@ DATA = [
 ]
 
 
-def _index_data(client: Elasticsearch):
+def delete_index():
+    res = Elasticsearch(ELASTIC_URL)
+    res.indices.delete(INDEX_NAME)
+
+
+def _index_data(client: Elasticsearch, index_name=INDEX_NAME):
     for character in DATA:
-        res = client.index(index=INDEX_NAME, id=character['id'], document=character)
+        res = client.index(index=index_name, id=character['id'], document=character)
         print(res)
         # print(character)
+
 
 # TODO: Move this hello world example somewhere else
 def hello_world():
@@ -57,6 +65,13 @@ def hello_world():
         print(f"Query hit on {hit['_source']}")
 
 
+'''
+    Example of using the completion suggestor API
+    https://www.elastic.co/guide/en/elasticsearch/reference/current/search-suggesters.html#completion-suggester
+'''
+
+
+
 def main():
     # hello_world()
     # Now how do I use suggester api w/ this client
@@ -77,8 +92,31 @@ def main():
     }
 
     client = Elasticsearch(ELASTIC_URL)
-    res = client.search(index=INDEX_NAME, query=suggestion_query)
-    print(res)
+    # iClient = IndicesClient(client)
+    # Add a mapping
+    suggester_mapping = {
+        "mappings": {
+            INDEX_NAME: {
+                "name": {
+                    "type": "completion"
+                },
+                "name": {
+                    "type": "keyword"
+                }
+            }
+        }
+    }
+    aIndex = client.reindex().get(INDEX_NAME)
+    print(json.dumps(aIndex, indent=4))
+    # print(iClient.get(INDEX_NAME))
+    # iClient.put_mapping(suggester_mapping, index=INDEX_NAME, doc_type=None)
+    # res = client.search(index=INDEX_NAME, query=suggestion_query)
+    # print(res)
+
 
 if __name__ == "__main__":
-    main()
+    # delete_index()
+    # main()
+    # res = Elasticsearch(ELASTIC_URL)
+    # _index_data(res, index_name="test-index")
+    completion_suggestor_tutoria()

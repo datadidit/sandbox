@@ -1,0 +1,6 @@
+cluster.name: autocompletesandbox
+network.host: 0.0.0.0
+# Turning on CORS
+http.cors.enabled: true
+# TODO: `*` is a security risk change later
+http.cors.allow-origin: "*"

@@ -18,6 +18,16 @@ a dataset with python.
     docker run -p 127.0.0.1:9200:9200 -p 127.0.0.1:9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.16.3
     ```
 
+* Run Image with Mounted volumes and CORS
+  * So you won't need to keep regenerating the indexes
+  * So you can communicate via a GUI
+
+  ```shell
+  docker run -p 127.0.0.1:9200:9200 -p 127.0.0.1:9300:9300 \
+    -v $PWD/sandbox/elasticsearch-autocomplete/elasticsearch/custom_elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml \
+    -v $PWD/sandbox/elasticsearch-autocomplete/elasticsearch/_data:/usr/share/elasticsearch/data \
+    -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.16.3
+  ```
 
 
 ## Notes

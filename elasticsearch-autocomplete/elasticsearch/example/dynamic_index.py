@@ -86,7 +86,7 @@ def search_suggestor():
     search = {
         "suggest": {
             "simpson-suggest": {
-                "prefix": "mar",
+                "prefix": "ma",
                 "completion": {
                     "field": "name_completion"
                 }
@@ -109,6 +109,8 @@ def search_suggestor():
     print(json.dumps(res, indent=4))
 
     # TODO: Figure out scoring
+    # TODO: Mar returns both Maggie and Margret in fuzzy search but not in the correct order
+    # TODO: Has some work arounds https://github.com/elastic/elasticsearch/issues/24903
 
 
 if __name__ == "__main__":

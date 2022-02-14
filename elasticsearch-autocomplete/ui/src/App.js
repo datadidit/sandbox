@@ -1,8 +1,10 @@
 import logo from './logo.svg';
 import React from 'react';
 import './App.css';
+import Autocomplete from "./autocomplete/Autocomplete";
+import "./style.css";
 import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
+// import Autocomplete from '@mui/material/Autocomplete';
 // TODO: Why is this not an import
 const axios = require('axios');
 
@@ -11,6 +13,35 @@ const headers = {
 }
 
 function App(){
+    return (
+        <div className="wrapper">
+            <h1>React Autocomplete</h1>
+            <h2>Want to see something cool?, start typing</h2>
+            <Autocomplete
+                suggestions={[
+                    "Angular",
+                    "Blitzjs",
+                    "Gatsby",
+                    "Reactjs",
+                    "Vuejs",
+                    "Svelte",
+                    "Nextjs",
+                    "Node",
+                    "Express",
+                    "Sails",
+                    "Loopback",
+                    "React-router",
+                    "Redux",
+                    "Flux",
+                    "Yarn",
+                    "Npm"
+                ]}
+            />
+        </div>
+    );
+}
+
+/*function App(){
   const [value, setValue] = React.useState(null);
   const [inputValue, setInputValue] = React.useState('');
   const [options, setOptions] = React.useState([])
@@ -24,30 +55,42 @@ function App(){
           <Autocomplete
               value={value}
               onChange={(event, newValue) => {
-                console.log("on change called")
+                // console.log("on change called")
                 setValue(newValue);
               }}
               inputValue={inputValue}
               onInputChange={(event, newInputValue) => {
-                console.log("on input change called")
+                // console.log("on input change called")
                 setInputValue(newInputValue);
+                // Original Simpson Suggestor
+                // let search = {
+                //     "suggest": {
+                //         "simpson-suggest": {
+                //             "prefix": newInputValue,
+                //             "completion": {
+                //                 "field": "name_completion"
+                //             }
+                //         }
+                //     }
+                // }
                 let search = {
                     "suggest": {
-                        "simpson-suggest": {
+                        "suggestions": {
                             "prefix": newInputValue,
                             "completion": {
-                                "field": "name_completion"
+                                "field": "team_completion"
                             }
                         }
                     }
                 }
-
-                axios.post("http://localhost:9200/simpson-example/_search", search, {headers})
+                // let searchURL = "http://localhost:9200/simpson-example/_search"
+                let searchURL = "http://localhost:9200/team/_search"
+                axios.post(searchURL, search, {headers})
                     .then((response) => {
                         // console.log("Response ")
                         // console.log(response)
                         // console.log(Object.keys(response.data.suggest))
-                        let suggestions = response.data.suggest['simpson-suggest'];
+                        let suggestions = response.data.suggest['suggestions'];
                         let options = suggestions['0'].options;
                         // console.log(suggestions['0'].options)
                         let names = options.map(entry => {
@@ -56,6 +99,7 @@ function App(){
                             // TODO: Figure out options label
                             return name
                         })
+                        console.log(options)
                         setOptions(names)
                     }).catch(error => {
                         console.log(error)
@@ -69,7 +113,7 @@ function App(){
         </header>
       </div>
   )
-}
+}*/
 /*function App() {
   return (
     <div className="App">

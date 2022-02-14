@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: verdana;
+    line-height: 1.5;
+    background: hsla(218, 100%, 42%, 1);
+    background: linear-gradient(
+            180deg,
+            hsla(218, 100%, 42%, 0.6) 0%,
+            hsla(0, 0%, 98%, 1) 50%
+    );
+    height: 100vh;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.wrapper h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+}
+
+input {
+    border: 1px solid hsla(218, 100%, 42%, 1);
+    outline: none;
+    padding: 0 0.5rem;
+    width: 300px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.no-suggestions {
+    color: #999;
+    padding: 0.4rem;
+    font-size: 0.9rem;
+}
+
+.suggestions {
+    border: 1px solid hsla(218, 100%, 42%, 0.5);
+    border-top-width: 0;
+    list-style: none;
+    margin-top: 0;
+    max-height: 143px;
+    overflow-y: auto;
+    padding-left: 0;
+    width: 300px;
+}
+
+.suggestions::-webkit-scrollbar {
+    width: 0.2rem;
+    height: 0rem;
+    border-radius: 20px;
+}
+
+.suggestions::-webkit-scrollbar-thumb {
+    background-color: hsla(218, 100%, 42%, 1);
+}
+
+.suggestions li {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.suggestion-active,
+.suggestions li:hover {
+    background: linear-gradient(
+            90deg,
+            hsla(218, 100%, 42%, 0.6) 0%,
+            hsla(0, 0%, 98%, 1) 200%
+    );
+    color: #fff;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.suggestions li:not(:last-of-type) {
+    border-bottom: 1px solid #999;
+}

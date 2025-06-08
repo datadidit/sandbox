@@ -22,13 +22,17 @@ const AutoComplete = () => {
         // );
 
         setInput(e.target.value);
+        // Currently only pulling active add inactive to pull both
         let search = {
             "suggest": {
                 "suggestions": {
                     "prefix": e.target.value,
                     "completion": {
                         "field": "team_completion",
-                        "size": 10
+                        "size": 10,
+                        "contexts": {
+                            "active_type": ["active", "inactive"]
+                        }
                     }
                 }
             }
@@ -44,7 +48,7 @@ const AutoComplete = () => {
                 let options = suggestions['0'].options;
                 // console.log(suggestions['0'].options)
                 let names = options.map(entry => {
-                    let name = entry._source.name
+                    let name = `${entry._source.name} - ${entry._source.level}`
                     console.log(name)
                     // TODO: Figure out options label
                     return name

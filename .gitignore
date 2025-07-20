@@ -1,5 +1,13 @@
 *.pyc
+# Ignore intellij files
 *.idea
+
+# Ignore vscode files
+*.vscode
+
+# Ignore Python environments
+*.venv
+*.env
 package-lock.json
 node_modules/
 *target*

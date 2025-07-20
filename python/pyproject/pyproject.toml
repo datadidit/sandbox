@@ -1,0 +1,23 @@
+[build-system]
+# backend to use and which other dependencies to dependencies to use.
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[project]
+# Defines project metadata
+name = "hello_pyproject"
+version = "0.0.1"
+description = "Just a project to gain a better understanding of pyproject file"
+authors = [
+    {"name" = "Marcus Wyche"},
+]
+readme = "README.md"
+dependencies=[
+    "pydantic",
+    "sqlalchemy",
+]
+
+# [tool]
+# specific sub tables related to the tools
+[tool.hatch.build.targets.wheel]
+packages=["src/hello_pyproject"]

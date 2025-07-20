@@ -62,6 +62,23 @@ Installing collected packages: greenlet, sqlalchemy, hello_pyproject
 Successfully installed greenlet-3.2.3 hello_pyproject-0.0.1 sqlalchemy-2.0.41
 ```
 
+* Installing Optional Dependencies
+
+Add the optional section:
+
+```toml
+[project.optional-dependencies]
+test = [
+    "pytest"
+]
+```
+
+Then run the below command to install them:
+
+```
+pip install .[test]
+```
+
 ## Important Terms
 
 * [Build Backend](https://packaging.python.org/en/latest/glossary/#term-Build-Backend): A library that takes a source tree and builds a source distribution from it. Note this is different than a Build Backend(e.g. pip)

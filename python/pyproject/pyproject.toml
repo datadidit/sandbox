@@ -12,9 +12,14 @@ authors = [
     {"name" = "Marcus Wyche"},
 ]
 readme = "README.md"
-dependencies=[
+dependencies = [
     "pydantic",
     "sqlalchemy",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest"
 ]
 
 # [tool]

@@ -27,9 +27,9 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Documentation = "https://github.com/Marcus Wyche/hatch-demo#readme"
-Issues = "https://github.com/Marcus Wyche/hatch-demo/issues"
-Source = "https://github.com/Marcus Wyche/hatch-demo"
+Documentation = "https://github.com/datadidit/sandbox/tree/hatch/python/hatch/"
+Issues = "https://github.com/datadidit/sandbox"
+Source = "https://github.com/datadidit/sandbox"
 
 [tool.hatch.version]
 path = "src/hatch_demo/__about__.py"

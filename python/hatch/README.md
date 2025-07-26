@@ -27,3 +27,9 @@ Wrote: pyproject.toml
 
 This is useful but since I didn't do just `hatch new` it doesn't create the `src` directory and stuff for me it seems. So this route you'll need to update a bunch of stuff 
 in the pyproject.toml manually. Still a pretty fleshed out start.
+
+## TODOs
+
+* Get pytest running with hatch
+* Pytest logging to console w/ hatch and toml only no pytest.ini
+* Understanding of pytest envs

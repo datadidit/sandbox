@@ -22,8 +22,18 @@
         // Create a React element out of it
         const root = ReactDOM.createRoot(app);
 
+        // This needs to be capitalized to distinguish from HTML and Javascript
+        const HeaderComponent = () => <h1>Develop. Preview. Ship.</h1>;
+
+        // HomePage Component
+        const HomePage = () => (
+            <div>
+                {/* Nesting Header Component */}
+                <HeaderComponent/>
+            </div>
+        );
         // Add elements to it
-        root.render(<h1>Develop. Preview. Ship.</h1>)
+        root.render(<HomePage/>)
     </script>
 </body>
 </html>

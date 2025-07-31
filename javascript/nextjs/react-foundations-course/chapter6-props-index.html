@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--
+        Below code appends a header to a div.
+    -->
+    <div id="app"></div>
+    <!-- Why can't this be <script/> -->
+    <!-- Babel imports for jsx -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- React imports -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script type="text/jsx">
+        // Get the main div
+        const app = document.getElementById('app');
+
+        // Create a React element out of it
+        const root = ReactDOM.createRoot(app);
+
+        // This needs to be capitalized to distinguish from HTML and Javascript
+        const HeaderComponent = ({title}) => {
+            console.log(`Props ${title}`)
+            return <h1>{title ? title : "Develop. Preview. Ship."}</h1>;
+        }
+
+        const ListIndex = ({name}) => {
+            return <li>{name}</li>
+        }
+
+        // Iterating through lists
+        const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton']
+        // HomePage Component
+        const HomePage = () => (
+            <div>
+                {/* Nesting Header Component */}
+                <HeaderComponent/>
+                <ul>
+                {names.map((name) => {
+                    // console.log(`Name ${name}`);
+                    return <ListIndex key={name} name={name} />
+                })}
+                </ul>
+            </div>
+        );
+        // Add elements to it
+        root.render(<HomePage/>)
+    </script>
+</body>
+</html>

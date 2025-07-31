@@ -19,9 +19,6 @@
         // Get the main div
         const app = document.getElementById('app');
 
-        // Create a React element out of it
-        const root = ReactDOM.createRoot(app);
-
         // This needs to be capitalized to distinguish from HTML and Javascript
         const HeaderComponent = ({title}) => {
             // console.log(`Props ${title}`)
@@ -35,18 +32,31 @@
         // Iterating through lists
         const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton']
         // HomePage Component
-        const HomePage = () => (
-            <div>
+        const HomePage = () => {
+            // State
+            const [likes, setLikes] = React.useState(0);
+
+
+            const handleClick = () => {
+                setLikes(likes + 1);
+            }
+
+            return (<div>
                 {/* Nesting Header Component */}
                 <HeaderComponent/>
                 <ul>
-                {names.map((name) => {
-                    // console.log(`Name ${name}`);
-                    return <ListIndex key={name} name={name} />
-                })}
+                    {names.map((name) => {
+                        // console.log(`Name ${name}`);
+                        return <ListIndex key={name} name={name}/>
+                    })}
                 </ul>
-            </div>
-        );
+                <button onClick={handleClick}>Like({likes})</button>
+            </div>)
+        };
+
+        // Create a React element out of it
+        const root = ReactDOM.createRoot(app);
+
         // Add elements to it
         root.render(<HomePage/>)
     </script>

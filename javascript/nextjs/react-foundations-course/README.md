@@ -11,3 +11,8 @@ Going through this as a refresher course. It's been a bit.
 ### Chapter 4
 
 * Why can't I do `<script src='insert package' />` on the imports of javascript packages
+
+### Chapter 9
+
+* Updating Node on Mac
+* 

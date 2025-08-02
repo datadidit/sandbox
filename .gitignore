@@ -11,3 +11,6 @@
 package-lock.json
 node_modules/
 *target*
+
+# Javascript
+.next

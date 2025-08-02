@@ -25,6 +25,19 @@ nvm install 18.19.1
 ```
 npm run dev
 ```
+* layout.js is automatically created for you be next.
 * Chapter ends with route in a broken state.
 
 ![error](chapter9/static/error.png)
+
+### Chapter 10
+
+* Fixes component from Chapter 9 by introducing directives:
+  * `use client`
+  * `use server`
+
+### Chapter 11
+
+Course overview. Have now made some react components and moved them to 
+nextjs. Continue learning [React](https://react.dev/) and learn nextjs
+now by building something more complex in the next tutorial.

@@ -10,7 +10,7 @@ const ListIndex = ({name}) => {
     return <li>{name}</li>
 }
 
-const HomePage = () => {
+export default HomePage = () => {
     const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton']
 
     const [likes, setLikes] = useState(0);

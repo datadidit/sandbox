@@ -1,0 +1,8 @@
+README.md
+pyproject.toml
+src/appetizer/__init__.py
+src/appetizer/main.py
+src/appetizer.egg-info/PKG-INFO
+src/appetizer.egg-info/SOURCES.txt
+src/appetizer.egg-info/dependency_links.txt
+src/appetizer.egg-info/top_level.txt

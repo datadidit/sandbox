@@ -20,7 +20,7 @@ macbookpro:pyproject mkwyche$ . .venv/bin/activate
 Note nothing currently in your virtualenv
 
 ```
-macbookpro:pyproject mkwyche$ ls -l .venv/lib/python3.13/site-packages/
+(.venv) macbookpro:pyproject mkwyche$ ls -l .venv/lib/python3.13/site-packages/
 total 0
 drwxr-xr-x   9 mkwyche  staff  288 Aug 13 02:30 pip
 drwxr-xr-x  10 mkwyche  staff  320 Aug 13 02:30 pip-25.1.1.dist-info
@@ -29,7 +29,7 @@ drwxr-xr-x  10 mkwyche  staff  320 Aug 13 02:30 pip-25.1.1.dist-info
 * Use pip to install dependencies from your `toml` into your environment
 
 ```
-macbookpro:pyproject mkwyche$ pip install .
+(.venv) macbookpro:pyproject mkwyche$ pip install .
 Processing /Users/mkwyche/workspace/sandbox/python/pyproject
   Installing build dependencies ... done
   Getting requirements to build wheel ... done

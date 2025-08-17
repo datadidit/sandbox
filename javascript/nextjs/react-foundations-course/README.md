@@ -2,10 +2,6 @@
 
 Going through this as a refresher course. It's been a bit.
 
-## Bookmark
-
-[Current Chapter 9](https://nextjs.org/learn/react-foundations/installation)
-
 ## Notes
 
 ### Chapter 4

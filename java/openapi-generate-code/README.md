@@ -39,7 +39,7 @@ actually use it as my base.
 mvn clean install -PrustCodeGen
 ```
 
-Example code can be seen [here](generatedsources/rust/models/person.rs)
+Example code can be seen [here](generatedsources/rust/src/models/person.rs)
 
 ## TODO:
 

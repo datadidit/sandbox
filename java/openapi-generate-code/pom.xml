@@ -15,6 +15,7 @@
         <jakarta.ws.rs-api-version>2.1.6</jakarta.ws.rs-api-version>
         <jakarta-annotation-version>1.3.5</jakarta-annotation-version>
         <jackson-databind-nullable-version>0.2.6</jackson-databind-nullable-version>
+        <generatedsources.base>${project.basedir}/generatedsources</generatedsources.base>
     </properties>
     <dependencies>
         <!-- Dependencies for gson implementation of classes -->
@@ -95,11 +96,14 @@
                                         <serializationLibrary>jackson</serializationLibrary>
                                         <sourceFolder>src/gen/java/main</sourceFolder>
                                     </configOptions>
-                                    <!--
-                                    If generateSupportFiles is off the Pojo is not made because the JSON
-                                    import is needed which is derived from the support files
+                                    <!-- In order to only compile the model you need this JSON.json file -->
+                                    <supportingFilesToGenerate>JSON.java</supportingFilesToGenerate>
+                                    <!-- This is true by default if JSON.java is ever not needed in the generated files
+                                        you'll no longer need the above line. Turning this back on can help to figure
+                                        out what supported files are needed in the compiled code.
                                     -->
                                     <generateSupportingFiles>true</generateSupportingFiles>
+                                    <output>${generatedsources.base}/java</output>
                                 </configuration>
                             </execution>
                         </executions>
@@ -125,6 +129,7 @@
                                     <generatorName>rust</generatorName>
                                     <generateModelTests>true</generateModelTests>
                                     <generateSupportingFiles>false</generateSupportingFiles>
+                                    <output>${generatedsources.base}/rust</output>
                                 </configuration>
                             </execution>
                         </executions>
@@ -150,6 +155,7 @@
                                     <generatorName>python</generatorName>
                                     <generateModelTests>true</generateModelTests>
                                     <generateSupportingFiles>false</generateSupportingFiles>
+                                    <output>${generatedsources.base}/python</output>
                                 </configuration>
                             </execution>
                         </executions>

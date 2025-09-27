@@ -1,0 +1,4 @@
+docs/Person.md
+src/gen/java/main/org/openapitools/client/JSON.java
+src/gen/java/main/org/openapitools/client/model/Person.java
+src/test/java/org/openapitools/client/model/PersonTest.java

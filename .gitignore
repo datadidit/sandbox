@@ -14,3 +14,4 @@ node_modules/
 
 # Javascript
 .next
+next-env.d.ts

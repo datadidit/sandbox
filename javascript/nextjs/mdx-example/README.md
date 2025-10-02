@@ -3,3 +3,12 @@
 This example was derived from this [page](https://nextjs.org/docs/13/app/building-your-application/configuring/mdx) in the 
 NextJS docs.
 
+## Notes
+
+* Comment format is like below:
+
+```mdx
+{/* This is an MDX comment */}
+FOO BAR
+```
+

@@ -1,0 +1,14 @@
+openapi: 3.1.0
+info:
+  title: Person
+  version: 1.0.0
+components:
+  schemas:
+    Person:
+      type: object
+      properties:
+        name:
+          type: string
+          description: A persons name
+      required:
+        - name

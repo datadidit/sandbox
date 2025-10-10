@@ -1,0 +1,19 @@
+version = 1
+revision = 3
+requires-python = ">=3.13"
+
+[[package]]
+name = "appetizer"
+version = "0.1.0"
+source = { directory = "../appetizer" }
+
+[[package]]
+name = "customer"
+version = "0.1.0"
+source = { editable = "." }
+dependencies = [
+    { name = "appetizer" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "appetizer", directory = "../appetizer" }]

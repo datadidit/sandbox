@@ -22,7 +22,8 @@ let codeExamples = [
         "language": "javascript",
         "code": "console.log('Hello World')",
         "className": "language-javascript"
-    }
+    },
+
 ]
 
 export default function Home() {

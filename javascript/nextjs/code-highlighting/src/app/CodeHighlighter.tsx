@@ -1,11 +1,20 @@
 'use client'
-import hljs from "highlight.js";
 import {useEffect} from "react";
 
-const CodeHighlighter = ({code, className}) => {
+import hljs from "highlight.js";
+// This throws error said highlightjs not detected.
+// import 'highlightjs-line-numbers.js'
+
+const CodeHighlighter = ({code, className, includeLineNumbers=false}) => {
     useEffect(() => {
         hljs.highlightAll()
     }, [])
+
+    // if(includeLineNumbers) {
+    //     useEffect(() => {
+    //         hljs.initLineNumbersOnLoad()
+    //     }, [])
+    // }
 
     return (
         <pre>

@@ -21,6 +21,7 @@
     </properties>
     <modules>
         <module>openapi-generate-code</module>
+        <module>jackson2-examples</module>
     </modules>
     <dependencyManagement>
         <dependencies>
@@ -68,6 +69,56 @@
                     <configuration>
                         <source>${java.version}</source>
                         <target>${java.version}</target>
+                    </configuration>
+                </plugin>
+                <!-- Checking code for issues -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>3.3.1</version>
+                    <executions>
+                        <execution>
+                            <id>validate</id>
+                            <phase>validate</phase>
+                            <configuration>
+                                <!--
+                                    This is packaged with checkstyle but raw file can be found here
+                                    https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml
+                                -->
+                                <configLocation>google_checks.xml</configLocation>
+                                <encoding>UTF-8</encoding>
+                                <consoleOutput>true</consoleOutput>
+                                <failsOnError>true</failsOnError>
+                                <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                            </configuration>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!-- Spotless has the ability to actually fix said issues -->
+                <plugin>
+                    <groupId>com.diffplug.spotless</groupId>
+                    <artifactId>spotless-maven-plugin</artifactId>
+                    <version>2.43.0</version> <!-- Use the latest version -->
+                    <executions>
+                        <execution>
+                            <id>spotless-check</id>
+                            <phase>compile</phase> <!-- Or other suitable phase -->
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <java>
+                            <googleJavaFormat>
+                                <version>1.17.0</version> <!-- Use the latest version -->
+                            </googleJavaFormat>
+                            <!-- Or other formatters like eclipse(), prettier(), etc. -->
+                        </java>
+                        <!-- Configure other languages as needed -->
                     </configuration>
                 </plugin>
             </plugins>

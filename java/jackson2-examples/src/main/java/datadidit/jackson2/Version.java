@@ -1,12 +1,8 @@
 package datadidit.jackson2;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import lombok.Value;
 import lombok.extern.java.Log;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.function.Function;

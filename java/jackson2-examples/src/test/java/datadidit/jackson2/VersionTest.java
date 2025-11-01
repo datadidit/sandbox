@@ -24,7 +24,7 @@ public class VersionTest {
     private ObjectMapper mapper;
 
     @BeforeEach
-    public void setup(){
+    public void setup() {
         mapper = new ObjectMapper();
 
         SimpleModule module = new SimpleModule();
@@ -36,8 +36,8 @@ public class VersionTest {
     @Test
     public void testBlooperDeserializaerJsonParseException() {
         // Tried several different iterations of this
-        JsonParseException exception = assertThrows(JsonParseException.class, () ->  mapper.readValue(Version.VERSION_1_0_2.version, Version.class));
-        log.info(""+exception);
+        JsonParseException exception = assertThrows(JsonParseException.class, () -> mapper.readValue(Version.VERSION_1_0_2.version, Version.class));
+        log.info("" + exception);
     }
 
     @Test
@@ -52,14 +52,14 @@ public class VersionTest {
     @ParameterizedTest
     @EnumSource(Version.class)
     public void testWorks(Version xVersion) throws JsonProcessingException {
-        Version version = mapper.readValue("\"" + xVersion.version +"\"", Version.class);
+        Version version = mapper.readValue("\"" + xVersion.version + "\"", Version.class);
         log.info("Version: " + xVersion);
         assertEquals(xVersion, version);
     }
 
     @Data
     @NoArgsConstructor
-    class Example {
+    static class Example {
         List<Version> versions;
     }
 }

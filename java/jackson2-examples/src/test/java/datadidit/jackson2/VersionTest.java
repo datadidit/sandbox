@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.exc.InvalidDefinitionException;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import java.util.Arrays;
 import java.util.List;
@@ -47,9 +47,9 @@ public class VersionTest {
     Example example = new Example();
     example.setVersions(Arrays.asList(Version.VERSION_1));
 
-    InvalidDefinitionException exception =
+    JsonMappingException exception =
         assertThrows(
-            InvalidDefinitionException.class,
+            JsonMappingException.class,
             () -> mapper.readValue(mapper.writeValueAsString(example), Example.class));
     log.info("" + exception);
   }

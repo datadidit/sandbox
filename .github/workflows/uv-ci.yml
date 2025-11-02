@@ -1,4 +1,6 @@
 name: Python CI with UV
+run-name: ${{ github.actor }} running uv CI
+on: [push]
 jobs:
   uv-example:
     name: python

@@ -1,0 +1,35 @@
+[project]
+name = "python-examples"
+version = "0.1.0"
+description = "Simple package of examples for doing things in python"
+readme = "README.md"
+authors = [
+    { name = "Marcus Wyche", email = "mkwyche@datadidit.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "pydantic",
+    "fastapi"
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "polyfactory",
+    "httpx"
+]
+
+# Adding in logging
+[tool.logging.formatters.standard]
+format = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "INFO" # Set the desired logging level for console output
+
+[project.scripts]
+python-examples = "python_examples:main"
+
+[build-system]
+requires = ["uv_build>=0.8.9,<0.9.0"]
+build-backend = "uv_build"

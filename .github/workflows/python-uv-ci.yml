@@ -14,12 +14,6 @@ jobs:
         with:
           # Install a specific version of uv.
           version: "0.9.6"
-      - name: Where Am I
-        run: pwd && ls -l
-
-      # - name: Install the Dependencies
-      #   run: uv sync --directory python/python-examples --locked --all-extras --dev
-
       - name: Run tests
         # For example, using `pytest`
         run: uv run --directory python/python-examples pytest

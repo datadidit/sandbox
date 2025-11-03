@@ -1,0 +1,25 @@
+name: Python CI with UV
+run-name: ${{ github.actor }} running python(uv) CI
+on: [push]
+jobs:
+  uv-example:
+    name: python
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          # Install a specific version of uv.
+          version: "0.9.6"
+      - name: Where Am I
+        run: pwd && ls -l
+
+      # - name: Install the Dependencies
+      #   run: uv sync --directory python/python-examples --locked --all-extras --dev
+
+      - name: Run tests
+        # For example, using `pytest`
+        run: uv run --directory python/python-examples pytest

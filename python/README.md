@@ -1,3 +1,4 @@
+![python workflow](https://github.com/datadidit/sandbox/actions/workflows/python-uv-ci.yml/badge.svg)
 # Python workspace
 
 ## Notes

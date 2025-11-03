@@ -1,5 +1,5 @@
 name: Python CI with UV
-run-name: ${{ github.actor }} running uv CI
+run-name: ${{ github.actor }} running python(uv) CI
 on: [push]
 jobs:
   uv-example:
@@ -16,9 +16,10 @@ jobs:
           version: "0.9.6"
       - name: Where Am I
         run: pwd && ls -l
-      # - name: Install the project
+
+      # - name: Install the Dependencies
       #   run: uv sync --directory python/python-examples --locked --all-extras --dev
 
-      # - name: Run tests
-      #   # For example, using `pytest`
-      #   run: uv run --directory python/python-examples pytest tests
+      - name: Run tests
+        # For example, using `pytest`
+        run: uv run --directory python/python-examples pytest

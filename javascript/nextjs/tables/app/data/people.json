@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Michael Scott",
+    "position": "Regional Manager",
+    "episodes": 2000,
+    "company": "Dunder Mifflin",
+    "email": "michael.scott@dundermifflin.com",
+    "phone_number": "800-123-4567"
+  },
+  {
+    "name": "Dwight Schrute",
+    "position": "Assitant to Regional Manager",
+    "company": "Dunder Mifflin",
+    "episodes": 1000,
+    "email": "dwight.schrute@dundermifflin.com",
+    "phone_number": "800-456-8901"
+  },
+  {
+    "name": "Jim Halpert",
+    "position": "Salesman",
+    "company": "Dunder Mifflin",
+    "episodes": 2000,
+    "email": "jim.halpert@dundermifflin.com",
+    "phone_number": "800-456-8901"
+  },
+  {
+    "name": "Pam Halpert",
+    "position": "Receptionist/Saleswoman",
+    "company": "Dunder Mifflin",
+    "episodes": 2000,
+    "email": "pam.halpert@dundermifflin.com",
+    "phone_number": "800-456-8902"
+  }
+]

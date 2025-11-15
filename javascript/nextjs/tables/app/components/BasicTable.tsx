@@ -7,16 +7,17 @@ const ASCENDING = "asc"
 
 const getTableHeader = (column, sortField, sortDirection) => {
     let columnValue = column.name
-
+    // TODO: If any columns can't be sorted the cursor should be cursor-not-allowed
+    let defaultClassName = "flex justify-center space-x-2 cursor-pointer"
     if(column.key == sortField && sortDirection == DESCENDING){
         return (
-            <div className="flex justify-center space-x-2" key={column.key}>
+            <div className={defaultClassName} key={column.key}>
                 {column.name} <ChevronDown/>
             </div>
         )
     }else if(column.key == sortField && sortDirection == ASCENDING){
         return (
-            <div className="flex justify-center space-x-2" key={column.key}>
+            <div className={defaultClassName} key={column.key}>
                 <div>
                     {column.name}
                 </div>
@@ -25,7 +26,7 @@ const getTableHeader = (column, sortField, sortDirection) => {
         )
     }
     return (
-        <div key={column.key}>
+        <div className={`${defaultClassName}`} key={column.key}>
             {column.name}
         </div>
     )
@@ -36,6 +37,7 @@ const BasicTable = ({columns, data}) => {
     // const rows = data.forEach((entry, idx) => {
     //     return
     // })
+    // const [cursorColumn, setCursorColumn] = useState("")
     const [tableData, setTableData] = useState(data)
     const [sortDirection, setSortDirection] = useState("")
     const [sortField, setSortField] = useState("")
@@ -61,7 +63,14 @@ const BasicTable = ({columns, data}) => {
         setTableData(sortedData)
     }
 
-    console.log("I think data should be updated!")
+    const handleMouseEnter = (column, event) => {
+        console.log(`Mouse entered ${column.name}`)
+    }
+
+    const handleMouseLeave = (column, event) => {
+        console.log(`Mouse left ${column.name}`)
+    }
+
     return (
         <div>
             <header className="p-5 text-center">
@@ -76,6 +85,8 @@ const BasicTable = ({columns, data}) => {
                         <th
                             key={column.key}
                             onClick={e => handleColumnClick(column, e)}
+                            onMouseEnter={e => handleMouseEnter(column, e)}
+                            onMouseLeave={e => handleMouseLeave(column, e)}
                         >
                             {getTableHeader(column, sortField, sortDirection)}
                         </th>

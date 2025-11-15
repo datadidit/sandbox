@@ -30,5 +30,21 @@
     "episodes": 2000,
     "email": "pam.halpert@dundermifflin.com",
     "phone_number": "800-456-8902"
+  },
+  {
+    "name": "Kevin Malone",
+    "position": "Accountant",
+    "company": "Dunder Mifflin",
+    "episodes": 2000,
+    "email": "kevin.malone@dundermifflin.com",
+    "phone_number": "800-124-5678"
+  },
+  {
+    "name": "Oscar Martinez",
+    "position": "Accountant",
+    "company": "Dunder Mifflin",
+    "episodes": 2000,
+    "email": "oscar.martinez@dundermifflin.com",
+    "phone_number": "800-123-5678"
   }
 ]

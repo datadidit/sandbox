@@ -38,8 +38,8 @@ def test_unittest_singleton_second_call(mock_request):
     assert x_return_value == results
 
 
-# You can use `auto-use` here to make this happen automatically
-@pytest.fixture
+# You can use `autouse` here to make this happen automatically
+@pytest.fixture(autouse=False)
 def reload_module():
     import importlib
     import test_mocking_python

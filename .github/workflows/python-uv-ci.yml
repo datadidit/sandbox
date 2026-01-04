@@ -14,6 +14,6 @@ jobs:
         with:
           # Install a specific version of uv.
           version: "0.9.6"
-      - name: Run tests
+      - name: Run Python Example Tests
         # For example, using `pytest`
         run: uv run --directory python/python-examples pytest

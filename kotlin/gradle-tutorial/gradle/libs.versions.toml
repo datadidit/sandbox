@@ -4,9 +4,11 @@
 [versions]
 guava = "33.5.0-jre"
 junit-jupiter = "6.0.1"
+mapstruct = "1.6.3"
 
 [libraries]
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
+mapstruct = { module = "org.mapstruct:mapstruct", version.ref = "mapstruct" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
 
 [plugins]

@@ -14,6 +14,9 @@ plugins {
 
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+
+    // Apply the maven publish plugin
+    id("maven-publish")
 }
 
 repositories {
@@ -29,6 +32,7 @@ dependencies {
 
     // This dependency is used by the application.
     implementation(libs.guava)
+    implementation(libs.mapstruct)
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -87,4 +91,20 @@ tasks.register("greet") {
         println("How are you?")
     }
     dependsOn("hello")
+}
+
+/**
+ * Publishing configuration
+ */
+publishing {
+    publications {
+        // Adds the information needed by the plugin to actually publish.
+        create<MavenPublication>("maven") {
+            groupId = "datadidit.gradle.tutorial"
+            artifactId = "beginner-tutorial"
+            version = "1.0-SNAPSHOT"
+
+            from(components["java"])
+        }
+    }
 }

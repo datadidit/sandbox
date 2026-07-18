@@ -15,3 +15,9 @@ node_modules/
 # Javascript
 .next
 next-env.d.ts
+
+# Gradle files
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/

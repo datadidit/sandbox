@@ -25,3 +25,32 @@ resource "aws_security_group" "ssh_restricted" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+# Key pair ssh
+data "aws_key_pair" "key_pair" {
+    key_name = var.aws_key_pair_name
+}
+
+# Try filtering things out
+data "aws_ami" "ami" {
+  most_recent = true
+  owners      = ["amazon"] # Official Canonical AWS Account ID
+
+  filter {
+    name   = "image-id"
+    values = [var.aws_ami_image_id]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+}
+
+resource "aws_instance" "ec2_instance" {
+    ami = data.aws_ami.ami.id
+    instance_type = var.aws_instance_type
+    vpc_security_group_ids = concat([aws_security_group.ssh_restricted.id], var.aws_additional_security_groups)
+    key_name  = data.aws_key_pair.key_pair.key_name
+    user_data = var.aws_instance_startup_script
+}

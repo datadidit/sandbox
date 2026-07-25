@@ -18,7 +18,8 @@ variable "aws_key_pair_name" {
 variable "aws_ami_image_id" {
     description = "image id for the ami."
     type = string
-    default = "ami-0b6d9d3d33ba97d99"
+    default = "ami-01edba92f9036f76e"
+    # default = "ami-0b6d9d3d33ba97d99"
 }
 
 variable "aws_instance_type" {

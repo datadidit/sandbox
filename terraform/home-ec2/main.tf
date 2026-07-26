@@ -111,6 +111,24 @@ data "aws_ami" "ami" {
   }
 }
 
+# 2. Infer default username from AMI name
+# TODO: Eventually just add the user but below will work in the mean time.
+locals {
+  ami_name = lower(data.aws_ami.ami.name)
+
+  default_user = (
+    can(regex("ubuntu", local.ami_name)) ? "ubuntu" :
+    can(regex("amzn|amazon", local.ami_name)) ? "ec2-user" :
+    can(regex("centos", local.ami_name)) ? "centos" :
+    can(regex("rhel|redhat", local.ami_name)) ? "ec2-user" :
+    can(regex("debian", local.ami_name)) ? "admin" :
+    can(regex("fedora", local.ami_name)) ? "fedora" :
+    can(regex("suse|sles", local.ami_name)) ? "ec2-user" :
+    can(regex("arch", local.ami_name)) ? "arch" :
+    "ec2-user" # Safe fallback for most custom/Linux AMIs
+  )
+}
+
 resource "aws_instance" "ec2_instance" {
   ami                    = data.aws_ami.ami.id
   instance_type          = var.aws_instance_type

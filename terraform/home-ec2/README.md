@@ -4,8 +4,6 @@ Simple Module to create an ec2 instance for you to login to from your home netwo
 
 ## Variables
 
-Here is the Markdown table documenting your Terraform variables:
-
 | Variable Name | Description | Type | Default Value | Required? |
 | --- | --- | --- | --- | --- |
 | `aws_profile_name` | Name of your local aws profile | `string` | *None* | **Yes** |
@@ -18,8 +16,6 @@ Here is the Markdown table documenting your Terraform variables:
 | `aws_ec2_instance_name` | Name for the EC2 Instance | `string` | `"home-ec2"` | No |
 
 ## Outputs
-
-Here is the Markdown table for your output variable:
 
 | Output Name | Description | Type |
 | --- | --- | --- |

@@ -1,6 +1,17 @@
+# Pulls the AWS Subnet if provided by the user.
+data "aws_subnet" "subnet" {
+  count = var.aws_subnet_id != null ? 1 : 0
+  id    = var.aws_subnet_id
+}
+
 locals {
-    current_timestamp = timestamp()
-    formatted_timestamp = formatdate("YYYY-MM-DD'T'hh:mmZ", local.current_timestamp)
+  current_timestamp   = timestamp()
+  formatted_timestamp = formatdate("YYYY-MM-DD'T'hh:mmZ", local.current_timestamp)
+}
+
+locals {
+  # Just pull out the first default subnet
+  provided_subnet = var.aws_subnet_id != null ? data.aws_subnet.subnet[0].id : null
 }
 
 data "external" "local_user" {
@@ -81,7 +92,7 @@ resource "aws_vpc_security_group_egress_rule" "all_egress_v6" {
 
 # Key pair ssh
 data "aws_key_pair" "key_pair" {
-    key_name = var.aws_key_pair_name
+  key_name = var.aws_key_pair_name
 }
 
 # Try filtering things out
@@ -101,12 +112,13 @@ data "aws_ami" "ami" {
 }
 
 resource "aws_instance" "ec2_instance" {
-    ami = data.aws_ami.ami.id
-    instance_type = var.aws_instance_type
-    vpc_security_group_ids = concat([aws_security_group.ssh_restricted.id], var.aws_additional_security_groups)
-    key_name  = data.aws_key_pair.key_pair.key_name
-    user_data = var.aws_instance_startup_script
-    tags = {
-        Name = "home-ec2-${local.formatted_timestamp}"
-    }
+  ami                    = data.aws_ami.ami.id
+  instance_type          = var.aws_instance_type
+  vpc_security_group_ids = concat([aws_security_group.ssh_restricted.id], var.aws_additional_security_groups)
+  key_name               = data.aws_key_pair.key_pair.key_name
+  user_data              = var.aws_instance_startup_script
+  subnet_id              = local.provided_subnet
+  tags = {
+    Name = var.aws_ec2_instance_name
+  }
 }

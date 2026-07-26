@@ -4,8 +4,8 @@ variable "aws_profile_name" {
 }
 
 variable "aws_key_pair_name" {
-    description = "Name of your AWS key pair that will be used for ssh"
-    type = string
+  description = "Name of your AWS key pair that will be used for ssh"
+  type        = string
 }
 
 # TODO: Make this work...
@@ -16,26 +16,44 @@ variable "aws_key_pair_name" {
 # }
 
 variable "aws_ami_image_id" {
-    description = "image id for the ami."
-    type = string
-    default = "ami-01edba92f9036f76e"
-    # default = "ami-0b6d9d3d33ba97d99"
+  description = "image id for the ami."
+  type        = string
+  default     = "ami-01edba92f9036f76e"
+  # default = "ami-0b6d9d3d33ba97d99"
 }
 
 variable "aws_instance_type" {
-    description = "Size of the image to stand up"
-    type = string
-    default = "t3a.nano"
+  description = "Size of the image to stand up"
+  type        = string
+  default     = "t3a.nano"
 }
 
 variable "aws_additional_security_groups" {
-    description = "Additional security groups on top of the ssh only one created by module"
-    type = list(string)
-    default = []
+  description = "Additional security groups on top of the ssh only one created by module"
+  type        = list(string)
+  default     = []
 }
 
 variable "aws_instance_startup_script" {
-    description = "Startup script for instance."
-    type = string
-    default = null
+  description = "Startup script for instance."
+  type        = string
+  default     = null
+}
+
+variable "aws_vpc_id" {
+  description = "Id of your vpc"
+  type        = string
+  default     = null
+}
+
+variable "aws_subnet_id" {
+  description = "id for the subnet"
+  type        = string
+  default     = null
+}
+
+variable "aws_ec2_instance_name" {
+  description = "Name for the EC2 Instance"
+  type        = string
+  default     = "home-ec2"
 }

@@ -74,3 +74,4 @@ Destroy complete! Resources: 6 destroyed.
 
 - Figure out SSH from ipv6 instead of needing to force ipv4
 - Add a default user so you're not dependent on the default user in the AMI the issue I have with this is it makes passing down userdata a bit more complex but I'm sure it can be handled.
+- Add dynamic filtering to just provide a OS name and it'll pull latest AMI for that OS.

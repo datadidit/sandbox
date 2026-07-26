@@ -2,6 +2,29 @@
 
 Simple Module to create an ec2 instance for you to login to from your home network and only you can access. This can be used for tunneling to various resources in your VPC from your local box.
 
+## Variables
+
+Here is the Markdown table documenting your Terraform variables:
+
+| Variable Name | Description | Type | Default Value | Required? |
+| --- | --- | --- | --- | --- |
+| `aws_profile_name` | Name of your local aws profile | `string` | *None* | **Yes** |
+| `aws_key_pair_name` | Name of your AWS key pair that will be used for ssh | `string` | *None* | **Yes** |
+| `aws_ami_image_id` | image id for the ami. | `string` | *None* | **Yes** |
+| `aws_instance_type` | Size of the image to stand up | `string` | `"t3a.nano"` | No |
+| `aws_additional_security_groups` | Additional security groups on top of the ssh only one created by module | `list(string)` | `[]` | No |
+| `aws_instance_startup_script` | Startup script for instance. | `string` | `null` | No |
+| `aws_subnet_id` | id for the subnet | `string` | `null` | No |
+| `aws_ec2_instance_name` | Name for the EC2 Instance | `string` | `"home-ec2"` | No |
+
+## Outputs
+
+Here is the Markdown table for your output variable:
+
+| Output Name | Description | Type |
+| --- | --- | --- |
+| `ssh_command` | SSH Command you can run to access the image | `string` |
+
 ## Commands
 
 ### Create the EC2

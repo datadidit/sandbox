@@ -8,18 +8,9 @@ variable "aws_key_pair_name" {
   type        = string
 }
 
-# TODO: Make this work...
-# variable "aws_ami_name_filter" {
-#     description = "Filter for finding the hvm ami"
-#     type = list(string)
-#     default = ["ubuntu/images/hvm-ssd/ubuntu-resolute-26.04-amd64-server-*"]
-# }
-
 variable "aws_ami_image_id" {
   description = "image id for the ami."
   type        = string
-  default     = "ami-01edba92f9036f76e"
-  # default = "ami-0b6d9d3d33ba97d99"
 }
 
 variable "aws_instance_type" {
@@ -36,12 +27,6 @@ variable "aws_additional_security_groups" {
 
 variable "aws_instance_startup_script" {
   description = "Startup script for instance."
-  type        = string
-  default     = null
-}
-
-variable "aws_vpc_id" {
-  description = "Id of your vpc"
   type        = string
   default     = null
 }

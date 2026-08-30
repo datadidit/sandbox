@@ -64,3 +64,35 @@ For more information visit https://opencode.ai/docs
 ```
 
 This appends opencode binary to your bash_profile. So you'll need to `source` it again to see it on your path.
+
+- Getting API Key From Gemini
+
+1. Go to [aistudio](https://aistudio.google.com/)
+2. Find the `Get API Key` button at present you have to hit the `key` icon but and then that has the tool tip.
+3. From the opencode console run `/connect`
+4. Enter the API key once prompted into the prompt.
+5. Now when you do `/models` you'll see more models.
+![Additional Google Models](./GoogleModels.png)
+
+
+- Default opencode.jsonc
+
+The default opencode configuration is pretty bare bones post install:
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json"
+}
+```
+
+### TODO: Add some stuff for configuring providers and permissions..
+
+- Default models:
+
+Out the box you get a list of providers:
+
+![OpenCode Default Providers](./OpenCodeDefaultProviders.png)
+
+- This model is way too hot right now:
+
+![GoogleModelsInAccessible](./GeminiFlashInaccessible.png)

@@ -1,0 +1,15 @@
+# Agentic Sandbox
+
+Putting all my agentic stuff in this directory.
+
+## Agent Harness
+
+* [OpenCode](./opencode)
+* [Antigravity](./antigravity)
+
+## Notes
+
+### UX Mock Up Sites
+
+- https://www.figma.com/
+- https://dribbble.com/shots/popular/web-design

@@ -12,3 +12,4 @@ No `/init` command but supports the same concept and will read from standard loc
 
 ## Example First Skill
 
+Skill is located in the standard folder [.agents/skills/my-first-skill/SKILL.md](.agents/skills/my-first-skill/SKILL.md)

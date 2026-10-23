@@ -52,6 +52,7 @@ resource "aws_instance" "webserver" {
     ami = var.ami_id
     instance_type = "t2.micro"
     user_data = file("${path.module}/../.scripts/ec2-user-data.sh")
+    vpc_security_group_ids = [aws_security_group.web_ssh.id]
     tags = { 
         Name = "WebServerExample"
     }

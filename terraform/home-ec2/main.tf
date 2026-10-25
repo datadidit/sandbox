@@ -133,7 +133,7 @@ resource "aws_instance" "ec2_instance" {
   ami                    = data.aws_ami.ami.id
   instance_type          = var.aws_instance_type
   vpc_security_group_ids = concat([aws_security_group.ssh_restricted.id], var.aws_additional_security_groups)
-  key_name               = data.aws_key_pair.key_pair.key_name
+  # key_name               = data.aws_key_pair.key_pair.key_name
   user_data              = var.aws_instance_startup_script
   subnet_id              = local.provided_subnet
   tags = {
